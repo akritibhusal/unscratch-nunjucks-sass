@@ -1,0 +1,25 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate setup for Frond End Development using Bootstrap, SASS and Gulp which can be catered to the needs of any specific project using other technologies. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akritibhusal/boilerplate.git"
+  },
+  "author": "Akriti Bhusal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akritibhusal/boilerplate/issues"
+  },
+  "homepage": "https://github.com/akritibhusal/boilerplate#readme",
+  "devDependencies": {
+    "browsersync": "0.0.1-security",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "nunjucks": "^3.1.7"
+  }
+}
