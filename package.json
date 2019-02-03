@@ -17,9 +17,14 @@
   },
   "homepage": "https://github.com/akritibhusal/boilerplate#readme",
   "devDependencies": {
+    "autoprefixer": "^9.4.7",
+    "browser-sync": "^2.26.3",
     "browsersync": "0.0.1-security",
+    "cssnano": "^4.1.8",
     "gulp": "^4.0.0",
+    "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
     "nunjucks": "^3.1.7"
   }
 }
