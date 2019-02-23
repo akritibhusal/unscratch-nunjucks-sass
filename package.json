@@ -4,7 +4,8 @@
   "description": "A boilerplate setup for Frond End Development using Bootstrap, SASS and Gulp which can be catered to the needs of any specific project using other technologies. ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "browsersync": "0.0.1-security",
     "cssnano": "^4.1.8",
     "gulp": "^4.0.0",
+    "gulp-nunjucks": "^4.0.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.4",

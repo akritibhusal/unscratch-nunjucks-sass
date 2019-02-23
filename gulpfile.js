@@ -1,24 +1,31 @@
-// gulpfile.js
-var gulp = require("gulp"),
+/* gulpfile.js
+* 
+*/
+
+// Dependencies
+const gulp = require("gulp"),
     sass = require("gulp-sass"),
     postcss = require("gulp-postcss"),
     autoprefixer = require("autoprefixer"),
     cssnano = require("cssnano"),
     sourcemaps = require("gulp-sourcemaps"),
-    browserSync = require("browser-sync").create();
+    browserSync = require("browser-sync").create()
+    nunjucks = require('gulp-nunjucks');
 
+// Configurations
 var paths = {
     style: {
-        src: "app/sass/**/*.sass",
-        dest: "app/css"
+        src: "./app/sass/**/*.sass",
+        dist: "./app/public/css"
     },
     html: {
-        src: "app/views/",
-        dest: "app/html/**/*.html"
+        src: "./app/views/*.html",
+        dist: "./app/public/"
     }
 }
 
-function style() {
+// SASS Compile
+const sassCompile = ()=> {
     return (
         gulp
             .src(paths.style.src)
@@ -27,19 +34,37 @@ function style() {
             .on("error", sass.logError)
             .pipe(postcss([autoprefixer(), cssnano()]))
             .pipe(sourcemaps.write())
-            .pipe(gulp.dest(paths.style.src))
+            .pipe(gulp.dest(paths.style.dist))
             .pipe(browserSync.stream())
     );
 }
 
-function watch() {
+const njsCompile = () =>
+    gulp.src(paths.html.src)
+        .pipe(nunjucks.compile({name: 'boilerplate'}))
+        .pipe(gulp.dest(paths.html.dist))
+
+// Watch task
+// Watches nunjucks
+gulp.task('watch', ()=> {
     browserSync.init({
         server: {
-            baseDir: "./app" // if already serving locally, proxy: "localserver.link"
+            baseDir: "./app/public/" // If server is already running locally set proxy: "loccalserver.link"
         }
-    });
-    gulp.watch(paths.style.src, style);
-    gulp.watch(paths.html.dest).on('change', browserSync.reload);
-}
-exports.style = style;
-exports.watch = watch;
+    }),
+    gulp.watch([paths.html.src], njsCompile),
+    gulp.watch([paths.style.src], sassCompile),
+    gulp.watch(paths.html.dist).on('change', browserSync.reload)
+});
+
+// Watcher
+// function watch() {
+//     browserSync.init({
+//         server: {
+//             baseDir: "./app" // if already serving locally, proxy: "localserver.link"
+//         }
+//     });
+
+// }
+
+gulp.task('default', gulp.parallel('watch'))
