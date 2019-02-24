@@ -57,14 +57,4 @@ gulp.task('watch', ()=> {
     gulp.watch(paths.html.dist).on('change', browserSync.reload)
 });
 
-// Watcher
-// function watch() {
-//     browserSync.init({
-//         server: {
-//             baseDir: "./app" // if already serving locally, proxy: "localserver.link"
-//         }
-//     });
-
-// }
-
 gulp.task('default', gulp.parallel('watch'))
